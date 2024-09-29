@@ -1,7 +1,7 @@
 export interface Pergunta {
-    codigo: number,
-    descricao: string,
-    imagem: File
+  codigo?: number,
 
+  descricao?: string,
 
+  imagem?: File | string
 }
