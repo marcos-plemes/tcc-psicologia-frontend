@@ -27,12 +27,8 @@ export class PerguntasService extends BaseService {
     return this.http.delete(`${this.getUrbase()}/perguntas/${codigo}`);
   }
 
-  alterarPergunta(pergunta: any) {
-    this.http.put(`${this.getUrbase()}/perguntas`, pergunta).subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.error(error);
-    });
+  alterarPergunta(pergunta: any): Observable<any> {
+    return this.http.put(`${this.getUrbase()}/perguntas`, pergunta);
 
   }
 

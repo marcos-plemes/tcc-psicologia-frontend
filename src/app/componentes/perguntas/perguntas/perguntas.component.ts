@@ -62,13 +62,17 @@ export class PerguntasComponent implements OnInit {
       }
       if (this.codigo) {
         formData.append('codigo', this.codigo.toString());
-        this.perguntasService.alterarPergunta(formData);
+        this.perguntasService.alterarPergunta(formData).subscribe(response => {
+          alert('Pergunta alterada com sucesso.');
+        }, error => {
+          alert('Erro ao alterar pergunta.');
+        });
 
       } else {
         this.perguntasService.cadastrarPergunta(formData).subscribe(response => {
-          this.router.navigate(['/perguntas', response.codigo]).then(() => {
-            window.location.reload();
-          });
+          alert('Pergunta cadastrada com sucesso.');
+          this.router.navigate(['/perguntas', response.codigo]);
+          this.codigo = response.codigo;
         }, error => {
           alert('Erro ao cadastrar pergunta.');
         });
